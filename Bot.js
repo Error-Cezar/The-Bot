@@ -1,3 +1,4 @@
+function Run() {
 const fs = require("fs");
 const { Client, Intents, Collection } = require('discord.js');
 require("dotenv").config();
@@ -62,6 +63,6 @@ client.login(process.env.TOKEN).catch(err => {
         console.log("Error occured, trying to change proccess.")
     });
 });
+}
 
-Run = require(`${process.cwd()}/index.js`)
-Run();
+module.exports = Run;

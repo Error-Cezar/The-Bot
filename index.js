@@ -1,5 +1,4 @@
 
-function Run() {
 const app = require('express')();
 
 app.get('/api', (req, res) => {
@@ -7,8 +6,8 @@ app.get('/api', (req, res) => {
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.end(`Hello! Anyway.`);
 });
-}
 
 console.log("Server up!")
 
-module.exports = Run;
+const Run = require(`${process.cwd()}/Bot.js`)
+Run()
