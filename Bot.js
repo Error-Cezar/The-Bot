@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 	// Set a new item in the Collection
 	// With the key as the command name and the value as the exported module
 	client.commands.set(command.data.name, command);
-	console.log(`[BOT] => ${command.data.nam e}.js loaded.`)
+	console.log(`[BOT] => ${command.data.name}.js loaded.`)
 }
 
 console.log(`[BOT] => Starting up events.`)
