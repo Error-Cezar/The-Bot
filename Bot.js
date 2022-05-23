@@ -1,3 +1,4 @@
+function Bot() {
 const fs = require("fs");
 const { Client, Intents, Collection } = require('discord.js');
 require("dotenv").config();
@@ -52,6 +53,8 @@ client.DefaultSettings = {
 
 }
 
+
+
 //client.user.setActivity('Hillview County', { type: 'WATCHING' });
 client.login(process.env.TOKEN).catch(err => {
     console.error("An error happened, trying to change process");
@@ -60,3 +63,6 @@ client.login(process.env.TOKEN).catch(err => {
         console.log("Error occured, trying to change proccess.")
     });
 });
+}
+
+module.exports = Bot;
