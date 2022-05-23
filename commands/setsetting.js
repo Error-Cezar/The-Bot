@@ -33,7 +33,7 @@ module.exports = {
 
 		const { Guild } = require(`${process.cwd()}/Models/index.js`);
 		const prop  = interaction.options.getString('setting');
-		const value = interaction.options.getString('parameter');
+		let value = interaction.options.getString('parameter');
 		let paths = [];
 		Guild.schema.eachPath(function(path) {
 			paths.push(path)
@@ -51,8 +51,44 @@ module.exports = {
 			});
             return interaction.reply(`Invalid setting.`);
           }
-      
-        await client.updateGuild(interaction.guild, prop, value)
+
+
+		  let id
+		  let xd
+      switch(prop) {
+		case("WelcomeChannel"):
+		//if(!value.includes("<#") || value.includes(">")) { interaction.reply("You need to set a valid channel."); return}
+		console.log("hi")
+		id = value.replaceAll("<#", "")
+		id = value.replaceAll(">", "")
+		id = id.slice(2);
+		console.log(id)
+
+		xd = interaction.guild.channels.cache.find(channel => channel.id === id)
+		if(!xd) { interaction.reply("Invalid channel"); return }
+		if(xd.type === 'GUILD_VOICE') { interaction.reply("Invalid channel"); return}
+		await client.updateGuild(interaction.guild, prop, id);
+		value = `#${xd.name}`
+	  break;
+
+	  case("ConfessChannel"):
+	  //if(!value.includes("<#") || value.includes(">")) { interaction.reply("You need to set a valid channel."); return}
+	  console.log("hi")
+	  id = value.replaceAll("<#", "")
+	  id = value.replaceAll(">", "")
+	  id = id.slice(2);
+	  console.log(id)
+
+	  xd = interaction.guild.channels.cache.find(channel => channel.id === id)
+	  if(!xd) { interaction.reply("Invalid channel"); return }
+	  if(xd.type === 'GUILD_VOICE') { interaction.reply("Invalid channel"); return}
+	  await client.updateGuild(interaction.guild, prop, id);
+	  value = `#${xd.name}`
+	break;
+
+		  default:
+			await client.updateGuild(interaction.guild, prop, value);
+	  }
       
           // We can confirm everything's done to the client.
           interaction.reply(`Server setting ${prop} has been changed to:\n\`${value}\``);

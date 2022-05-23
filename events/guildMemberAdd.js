@@ -4,7 +4,7 @@ module.exports = {
         const client = member.client
 		const guildConf = await client.getGuild(member.guild);
 		if(guildConf.WelcomeChannel === "none") return
-		const xd = member.guild.channels.cache.find(channel => channel.name === guildConf.WelcomeChannel)
+		const xd = member.guild.channels.cache.find(channel => channel.id === guildConf.WelcomeChannel)
 		if(xd == undefined) return
 		let welcomeMessage = guildConf.WelcomeMessage
 

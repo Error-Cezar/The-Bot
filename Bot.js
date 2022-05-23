@@ -57,11 +57,7 @@ client.DefaultSettings = {
 
 //client.user.setActivity('Hillview County', { type: 'WATCHING' });
 client.login(process.env.TOKEN).catch(err => {
-    console.error("An error happened, trying to change process");
-    exec('kill 1',
-    function (error, stdout, stderr) {
-        console.log("Error occured, trying to change proccess.")
-    });
+    console.error(err);
 });
 }
 
