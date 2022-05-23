@@ -13,10 +13,10 @@ console.log(`[BOT] => DataBase loaded.`)
 
 console.log(`[BOT] => Starting up commands.`)
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(`${process.cwd()}/commands`).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
+	const command = require(`${process.cwd()}/commands/${file}`);
 	// Set a new item in the Collection
 	// With the key as the command name and the value as the exported module
 	client.commands.set(command.data.name, command);
@@ -24,10 +24,10 @@ for (const file of commandFiles) {
 }
 
 console.log(`[BOT] => Starting up events.`)
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(`${process.cwd()}/events`).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
+	const event = require(`${process.cwd()}/events/${file}`);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {
@@ -37,13 +37,13 @@ for (const file of eventFiles) {
 }
 
 console.log(`[BOT] => Starting up modules.`)
-fs.readdir(`./modules/`, (err, files) => {
+fs.readdir(`${process.cwd()}/modules/`, (err, files) => {
     if (err) {
         throw err
     }
     for (const file of files) {
         if (!file.endsWith(".js")) continue;
-        require(`./modules/${file}`)(client);
+        require(`${process.cwd()}/modules/${file}`)(client);
 		console.log(`[BOT] => ${file} loaded.`)
     }
 });
