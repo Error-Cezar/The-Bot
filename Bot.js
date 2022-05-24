@@ -59,6 +59,7 @@ client.DefaultSettings = {
 client.login(process.env.TOKEN).catch(err => {
     console.error(err);
 });
+	return "Done."
 }
 
 module.exports = Run;
