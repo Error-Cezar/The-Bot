@@ -12,4 +12,5 @@ console.log("Server up!")
 const Run = require(`${process.cwd()}/Bot.js`)
 Run()
 
+console.error("a")
 module.exports = app;
