@@ -2,7 +2,7 @@
   "name": "discord.js-bot-template",
   "version": "1.0.0",
   "description": "Discord.js bot template",
-  "main": "function/index.js",
+  "main": "index.js",
   "scripts": {
      "build": "netlify-lambda build function",
     "start": "node ."
@@ -29,10 +29,6 @@
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
     "mongoose": "^6.3.4",
-    "serverless-http": "^3.0.1",
     "tweetnacl": "^1.0.3"
-  },
-  "devDependencies": {
-    "netlify-lambda": "^0.4.0"
   }
 }
