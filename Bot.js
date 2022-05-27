@@ -1,4 +1,5 @@
 function Run() {
+
 const fs = require("fs");
 const { Client, Intents, Collection } = require('discord.js');
 require("dotenv").config();
@@ -59,6 +60,7 @@ client.DefaultSettings = {
 client.login(process.env.TOKEN).catch(err => {
     console.error(err);
 });
+
 	return "Done"
 } 
 

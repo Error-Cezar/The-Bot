@@ -10,7 +10,6 @@ app.get('/api', (req, res) => {
 console.log("Server up!")
   
 const Run = require(`${process.cwd()}/Bot.js`)
-Run()
-
+const hi = Run()
 console.error("a")
 module.exports = app;
