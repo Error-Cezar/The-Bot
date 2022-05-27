@@ -29,6 +29,7 @@
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
     "mongoose": "^6.3.4",
+    "serverless-http": "^3.0.1",
     "tweetnacl": "^1.0.3"
   }
 }
