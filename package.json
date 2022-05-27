@@ -2,9 +2,9 @@
   "name": "discord.js-bot-template",
   "version": "1.0.0",
   "description": "Discord.js bot template",
-  "main": "index.js",
+  "main": "function/index.js",
   "scripts": {
-     "build": "netlify-lambda build index.js",
+     "build": "netlify-lambda build function",
     "start": "node ."
   },
   "repository": {
