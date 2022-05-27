@@ -4,7 +4,7 @@
   "description": "Discord.js bot template",
   "main": "index.js",
   "scripts": {
-     "build": "netlify-lambda build index",
+     "build": "netlify-lambda build index.js",
     "start": "node ."
   },
   "repository": {
