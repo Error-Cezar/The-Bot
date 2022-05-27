@@ -3,6 +3,7 @@ const app = require(`${process.cwd()}/server.js`);
 app.listen(3000, () => console.log('Local app listening on port 3000!'));
 
 const fs = require("fs");
+let exec = require('child_process').exec;
 const { Client, Intents, Collection } = require('discord.js');
 require("dotenv").config();
 
@@ -60,5 +61,8 @@ client.DefaultSettings = {
 
 //client.user.setActivity('Hillview County', { type: 'WATCHING' });
 client.login(process.env.TOKEN).catch(err => {
-    console.error(err);
+	exec('kill 1',
+    function (error, stdout, stderr) {
+        console.log("Error occured, trying to change proccess.")
+    });
 });
