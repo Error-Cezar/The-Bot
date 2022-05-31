@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions, MessageEmbed } = require('discord.js');
+const bitfieldCalculator = require('discord-bitfield-calculator');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -34,11 +35,17 @@ module.exports = {
       const commandFiles = require("fs").readdirSync(`${process.cwd()}/commands`).filter(file => file.endsWith('.js'));
       for (const file of commandFiles) {
         const command = require(`${process.cwd()}/commands/${file}`);
-        let option = command.data.options.length
+        let option = command.data.options.length;
+        let perm = "none";
         if(command.data.options.length == 0) { option = "none" }
+        if(command.Permissions !== "none") {
+              const perm = command.Permissions.toString().replace(/\D/g,'');
+              const myPerms = bitfieldCalculator.permissions(perm);
+              perm = myPerms[0];
+        }
         const the = {
             name: command.data.name,
-            value: `**description:** ${command.data.description}\n**options:** ${option}`
+            value: `**description:** ${command.data.description}\n**options:** ${option}\n**Required Permission:** ${perm}`
         }
       Commands.push(the)
       }
