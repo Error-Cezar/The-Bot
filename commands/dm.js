@@ -13,13 +13,10 @@ module.exports = {
 			option.setName('message')
 				.setDescription('Message to send')
 				.setRequired(true)),
+	Permissions: Permissions.FLAGS.MANAGE_MESSAGES,
 
 	async execute(interaction) {
 	let con = true
-		if(!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
-			await interaction.reply("insufficient permission")
-			return
-		}
         try {
 			let msg = interaction.options.getString("message")
 			msg = msg.replaceAll(`\\n`, "\n");

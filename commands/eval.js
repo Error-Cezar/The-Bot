@@ -10,6 +10,7 @@ module.exports = {
                     option.setName('command')
                         .setDescription('Command to execute')
                         .setRequired(true)),
+  Permissions: "none",
 
 	async execute(interaction) {
         if(interaction.user.id != process.env.OWNER) return interaction.reply("You cannot execute this command.")

@@ -12,13 +12,10 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('reason')
 				.setDescription('Message to send')),
+	Permissions: Permissions.FLAGS.KICK_MEMBERS,
 
 	async execute(interaction) {
 	let candm = true
-		if(!interaction.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
-			await interaction.reply("insufficient permission")
-			return
-		}
        try {
 			// console.log(hi)
            const member = interaction.options.getMember('member');

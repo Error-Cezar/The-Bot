@@ -15,7 +15,11 @@ const SettingSchema = mongoose.Schema({
     ConfessChannel: {
         type: String,
         default: "none"
-    }
+    },
+    Muted: {
+        type: Array,
+        default: []
+    },
 
 });
 

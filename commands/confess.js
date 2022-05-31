@@ -6,6 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('confess')
 		.setDescription('Useless feature to do a anomynous confess'),
+    Permissions: "none",
 
 	async execute(interaction) {
     let candm = true
@@ -16,6 +17,8 @@ module.exports = {
         });
       if(candm == false) return
       const guildConf = await interaction.client.getGuild(interaction.guild);
+      if(guildConf.ConfessChannel == "none") { interaction.reply({ content: "The confess channel hasn't been set!", ephemeral: true }); return}
+      await interaction.reply({ content: 'Check your dms!', ephemeral: true });
       const filter = collected => collected.author.id === interaction.user.id;
 
         const collector = msg.channel.createMessageCollector({filter, max: 1, time: 30000}); //We're creating the collector, allowing for a max of 5 messages or 30 seconds runtime.
@@ -30,7 +33,7 @@ module.exports = {
               if(collected.first().content.length > 4085) { msg.channel.send("Message cannot be longer than 4086 characters."); return }
               try {
                   const emb = await interaction.client.Embed("New Confession", collected.first().content)
-                  const xd = interaction.guild.channels.cache.find(channel => channel.id === guildConf.WelcomeChannel)
+                  const xd = interaction.guild.channels.cache.find(channel => channel.id === guildConf.ConfessChannel)
 		          if(xd == undefined) return
 		          xd.send({embeds: [emb]})
                   msg.channel.send("Message has been successfully sent")

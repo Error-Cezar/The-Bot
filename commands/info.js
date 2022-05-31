@@ -6,6 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('info')
 		.setDescription('The Infos'),
+    Permissions: "none",
 
 	async execute(interaction) {
         const client = interaction.client

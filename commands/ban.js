@@ -12,6 +12,7 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('reason')
 				.setDescription('Message to send')),
+	Permissions: Permissions.FLAGS.BAN_MEMBERS,
 
 	async execute(interaction) {
 	let candm = true

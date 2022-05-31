@@ -13,12 +13,9 @@ module.exports = {
 			option.setName('parameter')
 				.setDescription('Parameter to set')
 				.setRequired(true)),
+	Permissions: Permissions.FLAGS.MANAGE_GUILD,
 
 	async execute(interaction) {
-		if(!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
-			await interaction.reply("insufficient permission")
-			return
-		}
 		const client = interaction.client
 		const guildConf = await client.getGuild(interaction.guild);
 		//console.log(typeof guildConf)
@@ -29,7 +26,7 @@ module.exports = {
 			return;
 		}
 
-		function Writable(prop) { if(prop == "GuildName" || prop == "GuildID" || prop == "_v" || prop == "_id") return false; else return true; }
+		function Writable(prop) { if(prop == "GuildName" || prop == "GuildID" || prop == "_v" || prop == "_id" || prop == "Muted") return false; else return true; }
 
 		const { Guild } = require(`${process.cwd()}/Models/index.js`);
 		const prop  = interaction.options.getString('setting');

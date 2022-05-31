@@ -7,6 +7,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('pong'),
+    Permissions: "none",
 
 	async execute(interaction) {
         function delay(delayInms) {  return new Promise(resolve => { setTimeout(() => { resolve(2); }, delayInms); }); }

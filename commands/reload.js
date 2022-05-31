@@ -21,6 +21,7 @@ module.exports = {
                     option.setName('guild')
                         .setDescription('Guild to reload')
                         .setRequired(true))),
+    Permissions: "none",
 
 	async execute(interaction) {
     switch(interaction.options.getSubcommand()) {
@@ -43,8 +44,17 @@ module.exports = {
       interaction.reply(`\`\`${cmd.data.name}.js\`\` reloaded.`)
       break;
       case "slash":
-        const { Deploy } = require(`${process.cwd()}/deploy`);
+        const { Deploy, DeployAll } = require(`${process.cwd()}/deploy`);
        const Guild = interaction.options.getString("guild")
+       if(Guild == "all") {
+        await interaction.deferReply();
+        let answer = await DeployAll(interaction.client.user.id)
+        if(answer == "success") {
+       await interaction.editReply("successfully updated application commands.")
+        } else {
+           interaction.editReply("An error occured please check console.")
+        }
+       } else {
        await interaction.deferReply();
        let answer = await Deploy(interaction.client.user.id, Guild)
        if(answer == "success") {
@@ -52,6 +62,7 @@ module.exports = {
        } else {
           interaction.editReply("An error occured please check console.")
        }
+    }
       break;
       default:
           interaction.reply("How did you end up here?")

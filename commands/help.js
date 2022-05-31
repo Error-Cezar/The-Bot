@@ -8,6 +8,7 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('command')
 				.setDescription('Specific command')),
+  Permissions: "none",
 
 	async execute(interaction) {
       let CmdName = interaction.options.getString('command')
