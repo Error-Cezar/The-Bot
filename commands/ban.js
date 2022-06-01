@@ -16,8 +16,8 @@ module.exports = {
 
 	async execute(interaction) {
 	let candm = true
-		if(!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-			await interaction.reply("insufficient permission")
+		if(!interaction.guild.me.hasPermission(Permissions.FLAGS.BAN_MEMBERS)) {
+			await interaction.reply("I don't have enough permissions to execute that command !")
 			return
 		}
        try {

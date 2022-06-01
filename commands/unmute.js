@@ -11,6 +11,10 @@ module.exports = {
     Permissions: Permissions.FLAGS.MANAGE_MESSAGES,
 
 	async execute(interaction) {
+        if(!interaction.guild.me.hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
+			await interaction.reply("I don't have enough permissions to execute that command !")
+			return
+		}
         function removeA(arr) {
             var what, a = arguments, L = a.length, ax;
             while (L > 1 && arr.length) {
@@ -31,6 +35,8 @@ module.exports = {
         }
 
         const member = interaction.options.getMember('member');
+
+        if(!member.manageable) { interaction.reply("Cannot remove muted role from this member!"); return }
 
         if (member.roles.cache.some(role => role.name === 'Server Muted')) {
             member.roles.remove(muted);        

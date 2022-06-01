@@ -36,16 +36,16 @@ module.exports = {
       for (const file of commandFiles) {
         const command = require(`${process.cwd()}/commands/${file}`);
         let option = command.data.options.length;
-        let perm = "none";
+        let perms = "none";
         if(command.data.options.length == 0) { option = "none" }
         if(command.Permissions !== "none") {
               const perm = command.Permissions.toString().replace(/\D/g,'');
               const myPerms = bitfieldCalculator.permissions(perm);
-              perm = myPerms[0];
+              perms = myPerms[0];
         }
         const the = {
             name: command.data.name,
-            value: `**description:** ${command.data.description}\n**options:** ${option}\n**Required Permission:** ${perm}`
+            value: `**description:** ${command.data.description}\n**options:** ${option}\n**Required Permission:** ${perms}`
         }
       Commands.push(the)
       }

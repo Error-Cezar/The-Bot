@@ -16,6 +16,10 @@ module.exports = {
 
 	async execute(interaction) {
 	let candm = true
+	if(!interaction.guild.me.hasPermission(Permissions.FLAGS.KICK_MEMBERS)) {
+		await interaction.reply("I don't have enough permissions to execute that command !")
+		return
+	}
        try {
 			// console.log(hi)
            const member = interaction.options.getMember('member');
