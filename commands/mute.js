@@ -17,7 +17,7 @@ module.exports = {
     Permissions: Permissions.FLAGS.MANAGE_MESSAGES,
 
 	async execute(interaction) {
-        if(!interaction.guild.me.hasPermission(Permissions.FLAGS.MANAGE_ROLES)) {
+        if(!interaction.guild.me.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
 			await interaction.reply("I don't have enough permissions to execute that command !")
 			return
 		}
@@ -39,8 +39,6 @@ module.exports = {
 
         const member = interaction.options.getMember('member');
         const reason = interaction.options.getString('reason') || "None."
-
-        if(!member.manageable) { interaction.reply("Cannot add muted role to this member!"); return }
 
         if (member.roles.cache.some(role => role.name === 'Server Muted')) { interaction.reply("User is already muted."); return }
 

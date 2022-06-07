@@ -20,8 +20,8 @@ module.exports = {
         try {
 			let msg = interaction.options.getString("message")
 			msg = msg.replaceAll(`\\n`, "\n");
-			const hi = await interaction.client.Embed(`DM From ${interaction.guild.name}`, msg)
-			console.log(hi)
+			const hi = await interaction.client.Embed(`Message from ${interaction.guild.name}`, msg, "", `${interaction.user.tag} | The Bot`)
+			// console.log(hi)
 			await interaction.options.getUser('member').send({embeds: [hi] }).catch((error) => {
 				interaction.reply("An error occured while trying to DM the user.");
 				console.log(error)

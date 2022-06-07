@@ -12,7 +12,6 @@ module.exports = {
        // console.log(`${interaction.user.tag} used ${interaction.commandName} in ${interaction.channel.name}.`);
 
         try {
-            console.log(command.Permissions)
             if(command.Permissions !== "none") {
                 if(!interaction.member.permissions.has(command.Permissions)) {
                     const perm = command.Permissions.toString().replace(/\D/g,'');
@@ -21,6 +20,7 @@ module.exports = {
                     return
                 }
             }
+          console.log("running command.")
             await command.execute(interaction);
         } catch (error) {
             console.error(error);
